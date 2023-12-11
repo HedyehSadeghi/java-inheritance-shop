@@ -1,6 +1,7 @@
 package org.lessons.java.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Headphones extends Product {
 
@@ -39,6 +40,15 @@ public class Headphones extends Product {
 
     public String toString(){
         return super.toString() +"color: "+ color+ "\nis wireless: "+ wireless;
+    }
+
+    @Override
+    public BigDecimal getDiscountedPrice(){
+        if (!wireless){
+            return getPrice().subtract(getFullPrice().multiply(new BigDecimal("0.07"))).setScale(2, RoundingMode.HALF_DOWN);
+        }else {
+            return super.getDiscountedPrice();
+        }
     }
 
     private void validateColor(String color){

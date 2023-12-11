@@ -1,6 +1,7 @@
 package org.lessons.java.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Random;
 
 public class Smartphone extends Product {
@@ -39,7 +40,16 @@ public class Smartphone extends Product {
 
     @Override
     public String toString(){
-        return super.toString() +"imei code: "+ imeiCode+ "\nmemory: "+ memory;
+        return super.toString() +"imei code: "+ imeiCode+ "\nmemory: "+ memory +" GB";
+    }
+
+    @Override
+    public BigDecimal getDiscountedPrice(){
+        if (memory< 32){
+            return getPrice().subtract(getFullPrice().multiply(new BigDecimal("0.05"))).setScale(2, RoundingMode.HALF_DOWN);
+        }else {
+            return super.getDiscountedPrice();
+        }
     }
 
     private int createImeiCode(){

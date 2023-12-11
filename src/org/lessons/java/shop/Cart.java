@@ -36,11 +36,12 @@ public class Cart {
         System.out.print("Type of product (smartphone/television/headphones): ");
         String typeOfProduct= scanner.nextLine();
         switch (typeOfProduct){
-            case "smartphones":
+            case "smartphone":
                 System.out.print("memory (int): ");
                 int memoryInput = Integer.parseInt(scanner.nextLine());
                 Smartphone smartphone= new Smartphone(nameInput,descriptionInput,price,vat,memoryInput);
                 System.out.println(smartphone.toString());
+                System.out.println("if you have a member card your discounted price is: "+ smartphone.getDiscountedPrice() +" €");
                 break;
             case "television":
                 System.out.print("inches: ");
@@ -49,6 +50,7 @@ public class Cart {
                 boolean smartInput = Boolean.parseBoolean( scanner.nextLine());
                 Television tv = new Television(nameInput,descriptionInput,price,vat,inchesInput,smartInput);
                 System.out.println(tv.toString());
+                System.out.println("if you have a member card your discounted price is: "+ tv.getDiscountedPrice() +" €");
                 break;
             case "headphones":
                 System.out.print("Color: ");
@@ -57,6 +59,7 @@ public class Cart {
                 boolean wirelessInput =  Boolean.parseBoolean( scanner.nextLine());
                 Headphones headphones= new Headphones(nameInput,descriptionInput,price,vat,colorInput,wirelessInput);
                 System.out.println(headphones.toString());
+                System.out.println("if you have a member card your discounted price is: "+ headphones.getDiscountedPrice() +" €");
                 break;
             default:
                 System.out.println("invalid choice");

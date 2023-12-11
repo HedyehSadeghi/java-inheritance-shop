@@ -1,6 +1,7 @@
 package org.lessons.java.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Television extends Product{
 
@@ -43,6 +44,14 @@ public class Television extends Product{
 
     public String toString(){
         return super.toString() +"inches: "+ inches+ "\nis smart: "+ smart;
+    }
+    @Override
+    public BigDecimal getDiscountedPrice(){
+        if (!smart){
+            return getPrice().subtract(getFullPrice().multiply(new BigDecimal("0.10"))).setScale(2, RoundingMode.HALF_DOWN);
+        }else {
+            return super.getDiscountedPrice();
+        }
     }
 
     private void validateInches(int inches){

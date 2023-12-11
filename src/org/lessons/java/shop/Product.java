@@ -95,6 +95,11 @@ public class Product {
     return randomGenerator.nextInt(0, 10000);
   }
 
+  public BigDecimal getDiscountedPrice(){
+      BigDecimal discountOnPrice=getFullPrice().multiply(new BigDecimal("0.02"));
+      return getFullPrice().subtract(discountOnPrice).setScale(2, RoundingMode.HALF_EVEN);
+  }
+
   // metodi di validazione
   private void validateName(String name) throws IllegalArgumentException{
     if(name == null || name.isEmpty()){
